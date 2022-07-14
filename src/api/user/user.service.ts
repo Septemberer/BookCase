@@ -69,16 +69,16 @@ export class UserService {
     const user = await this.userRepository.findOne(userId);
     const book = await this.bookRepository.findOne(bookId);
 
-    if (user.abonement == true && user.books.length < 5 && book.owner == 0) {
+    if (user.abonement == true && user.books.length < 5 && book.owner == 0) { // Проверка, что пользователь купил абонемент и у него не более 4 книг
       user.books.push(book.id);
       book.owner = user.id;
 
-      this.userRepository
+      this.userRepository // Обновление данных пользователя
         .createQueryBuilder("user")
         .update(user)
         .execute();
 
-      this.bookRepository
+      this.bookRepository // Обновление данных книги
         .createQueryBuilder("book")
         .update(book)
         .execute();
@@ -92,19 +92,21 @@ export class UserService {
     const user = await this.userRepository.findOne(userId);
     const book = await this.bookRepository.findOne(bookId);
 
-    if (book.id in user.books && book.owner == user.id) {
+    if (book.id in user.books && book.owner == user.id) { // Проверка условий что книга у пользователя есть
       book.owner = 0;
       const index = user.books.indexOf(book.id);
       if (index !== -1) {
         user.books.splice(index, 1);
+      } else {
+        return false;
       }
 
-      this.userRepository
+      this.userRepository // Обновление данных пользователя
         .createQueryBuilder("user")
         .update(user)
         .execute();
 
-      this.bookRepository
+      this.bookRepository // Обновление данных книги
         .createQueryBuilder("book")
         .update(book)
         .execute();

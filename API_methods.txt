@@ -1,0 +1,31 @@
+*Архитектура:*
+- RESTfull (контроллер, сервис, репозиторий(доступ бд))
+- Node.js + Nest.js
+- typeORM
+- TypeScript
+
+*Сущности:* 
+- User [UserID, name, books, abonement]
+- Book [BookID, name, owner]
+
+*Реализованные методы:*
+1. Добавление пользователя
+	POST(User) -> Promise<User>
+2. Редактирование пользователя
+	PUT(UserID) -> void
+3.1 Удаление пользователя
+	DELETE(UserID) -> void
+3.2 Добавить абонемент
+	PUT(UserID) -> Promise<void>
+4. Получить всех пользователей
+	GET() -> Promise<User[]>
+5. Получить юзера (и список книг) по ID
+	GET(UserID) -> Promise<User>
+6. Добавление книги
+	POST(Book) -> Promise<Book>
+7. Взять книгу пользователем
+	POST(UserID, BookID) -> Promise<boolean>
+8. Вернуть книгу  в библиотеку
+	POST(UserIS, BookID) -> Promise<boolean>
+9. Получить книгу по ID
+	GET(BookID)
