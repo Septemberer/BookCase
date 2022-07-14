@@ -64,6 +64,57 @@ export class UserService {
     return this.bookRepository.save(book);
   }
 
+  public async takeBook(userId: number, bookId: number): Promise<boolean> { // Взять книгу для пользователя (7)
+
+    const user = await this.userRepository.findOne(userId);
+    const book = await this.bookRepository.findOne(bookId);
+
+    if (user.abonement == true && user.books.length < 5 && book.owner == 0) {
+      user.books.push(book.id);
+      book.owner = user.id;
+
+      this.userRepository
+        .createQueryBuilder("user")
+        .update(user)
+        .execute();
+
+      this.bookRepository
+        .createQueryBuilder("book")
+        .update(book)
+        .execute();
+
+      return true;
+    }
+    return false;
+  }
+
+  public async returnBook(userId: number, bookId: number): Promise<boolean> { // Вернуть книгу от пользователя в библиотеку (8)
+    const user = await this.userRepository.findOne(userId);
+    const book = await this.bookRepository.findOne(bookId);
+
+    if (book.id in user.books && book.owner == user.id) {
+      book.owner = 0;
+      const index = user.books.indexOf(book.id);
+      if (index !== -1) {
+        user.books.splice(index, 1);
+      }
+
+      this.userRepository
+        .createQueryBuilder("user")
+        .update(user)
+        .execute();
+
+      this.bookRepository
+        .createQueryBuilder("book")
+        .update(book)
+        .execute();
+
+      return true;
+    }
+
+    return false;
+  }
+
 
   public getBook(id: number): Promise<Book> { // Получить книгу (9)
     return this.bookRepository.findOne(id);
