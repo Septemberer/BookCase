@@ -22,9 +22,9 @@ __decorate([
     __metadata("design:type", String)
 ], Book.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 120 }),
-    __metadata("design:type", String)
-], Book.prototype, "email", void 0);
+    (0, typeorm_1.Column)({ type: 'integer', default: 0 }),
+    __metadata("design:type", Number)
+], Book.prototype, "owner", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'boolean', default: false }),
     __metadata("design:type", Boolean)

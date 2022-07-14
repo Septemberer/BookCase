@@ -27,3 +27,4 @@ export class User {
   @UpdateDateColumn({ type: 'timestamp' })
   public updatedAt!: Date;
 }
+

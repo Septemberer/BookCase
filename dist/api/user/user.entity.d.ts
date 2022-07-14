@@ -1,7 +1,8 @@
 export declare class User {
     id: number;
     name: string;
-    email: string;
+    books: number[];
+    abonement: boolean;
     isDeleted: boolean;
     createdAt: Date;
     updatedAt: Date;

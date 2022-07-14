@@ -18,9 +18,5 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateBookDto.prototype, "name", void 0);
-__decorate([
-    (0, class_validator_1.IsEmail)(),
-    __metadata("design:type", String)
-], CreateBookDto.prototype, "email", void 0);
 exports.CreateBookDto = CreateBookDto;
 //# sourceMappingURL=book.dto.js.map

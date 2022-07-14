@@ -8,7 +8,7 @@ export class Book {
   @Column({ type: 'varchar', length: 120 })
   public name: string;
 
-  @Column({ type: 'number', default: 0})
+  @Column({ type: 'integer', default: 0})
   public owner: number;
 
   @Column({ type: 'boolean', default: false })

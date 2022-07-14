@@ -1,7 +1,7 @@
 export declare class Book {
     id: number;
     name: string;
-    email: string;
+    owner: number;
     isDeleted: boolean;
     createdAt: Date;
     updatedAt: Date;

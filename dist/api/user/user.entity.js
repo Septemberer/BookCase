@@ -22,9 +22,13 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 120 }),
-    __metadata("design:type", String)
-], User.prototype, "email", void 0);
+    (0, typeorm_1.Column)("simple-array"),
+    __metadata("design:type", Array)
+], User.prototype, "books", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'boolean', default: false }),
+    __metadata("design:type", Boolean)
+], User.prototype, "abonement", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'boolean', default: false }),
     __metadata("design:type", Boolean)
